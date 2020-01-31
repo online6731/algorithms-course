@@ -1,14 +1,13 @@
 class QuickFindUF():
     """
-    union-find class which implements the eager algorithm (quick-find)
-    for solving dynamic connectivity problem.
+    Implementation of eager algorithm or quick-find for dynamic connectivity problem.
     """
 
     ids = []
 
     def __init__(self, N):
         """
-        initialize the ids list by values from 0 to N-1
+        initialize the ids list with [0 ... N-1]
         """
 
         self.ids = [i for i in range(N)]
@@ -16,8 +15,9 @@ class QuickFindUF():
 
     def union(self, p, q):
         """
-        connects the two given elements by changing the id of
-        all connected elements of p to the id of q
+        connect the two given elements
+
+        change the id of all connected elements of p to ids[q]
         """
 
         self.ids = [i if i != self.ids[p] else self.ids[q] for i in self.ids]
@@ -25,6 +25,8 @@ class QuickFindUF():
 
     def connected(self, p, q):
         """
+        Return True if two given elements are connected, otherwise False
+
         checks if two given elements are connected by checking if they both have the same id
         """
 
@@ -34,7 +36,7 @@ class QuickFindUF():
     @staticmethod
     def test(input_text=None, debug=True):
         """
-        runs and tests the class with given input_text
+        run and test the class with given input_text
         """
 
         # if no input has given, input_text fills out randomly
