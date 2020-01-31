@@ -36,6 +36,11 @@ class QuickFindUF():
         """
         runs and tests the class with given input_text
         """
+
+        # if no input has given, input_text fills out randomly
+        if input_text == None:
+            input_text = '\n'.join(['10 5 5'] + [f'{randint(0, 9)} {randint(0, 9)}' for i in range(5)] +  [f'{randint(0, 9)} {randint(0, 9)}' for i in range(5)])
+
         lines = input_text.split('\n')
         nodes_n, unions_n, queries_n = map(int, lines[0].split())
         union_queries = map(lambda line: list(map(int, line.split())), lines[1:unions_n+1])
@@ -43,7 +48,6 @@ class QuickFindUF():
         result = ''
 
         uf = QuickFindUF(nodes_n)
-
         for p,q in union_queries:
             uf.union(p,q)
             if debug: print(uf.ids, f'- {p} and {q} connected')
@@ -57,5 +61,5 @@ class QuickFindUF():
 
 if __name__ == '__main__':
     from random import randint
-    random_generated_input = '\n'.join(['10 5 5'] + [f'{randint(0, 9)} {randint(0, 9)}' for i in range(5)] +  [f'{randint(0, 9)} {randint(0, 9)}' for i in range(5)])
-    QuickFindUF.test(input_text=random_generated_input, debug=True)
+
+    QuickFindUF.test(debug=True)
